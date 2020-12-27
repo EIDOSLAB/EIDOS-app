@@ -84,25 +84,28 @@ public class VisionListActivity extends AbstractListActivity {
       final Intent intent = new Intent(VisionListActivity.this, ImageClassificationActivity.class);
       intent.putExtra(ImageClassificationActivity.INTENT_MODULE_ASSET_NAME, (String) spinner.getSelectedItem());
       String nModuleAssetName = (String) spinner.getSelectedItem();
-      String modelSelected = nModuleAssetName.substring(nModuleAssetName.indexOf('_')+1,nModuleAssetName.indexOf('.')); //MODEL PATHNAME = [DATASET]_[ARCHITECTURE]_[TECHNIQUE].pt
+      //String modelSelected = nModuleAssetName.substring(nModuleAssetName.indexOf('_')+1,nModuleAssetName.indexOf('.')); //MODEL PATHNAME = [DATASET]_[ARCHITECTURE]_[TECHNIQUE].pt
       //switch(modelSelected.substring(0,modelSelected.indexOf('_')))
       //{
-      if(modelSelected.indexOf("cifar10") != -1) {
+      if(nModuleAssetName.indexOf("cifar10") != -1) {
         //case "resnet32":
         //case "vgg162l":
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH, 32);
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT, 32);
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET, Constants.CIFAR10_CLASSES);
           intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR10);
+          intent.putExtra(ImageClassificationActivity.INTENT_NORM_MEAN_RGB, new float[]{0.491f, 0.482f, 0.446f});
+          intent.putExtra(ImageClassificationActivity.INTENT_NORM_STD_RGB, new float[]{0.202f, 0.199f, 0.201f});
           //break;
       }
-      else if(modelSelected.indexOf("cifar100") != -1) {
+      else if(nModuleAssetName.indexOf("cifar100") != -1) {
         //case "alexnet":
         intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH, 32);
         intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT, 32);
         intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET, Constants.CIFAR100_CLASSES);
         intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR100);
-
+        intent.putExtra(ImageClassificationActivity.INTENT_NORM_MEAN_RGB, new float[]{0.507f, 0.486f, 0.441f});
+        intent.putExtra(ImageClassificationActivity.INTENT_NORM_STD_RGB, new float[]{0.267f, 0.256f, 0.276f});
         //break;
       }
       else {
@@ -111,7 +114,8 @@ public class VisionListActivity extends AbstractListActivity {
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT,224);
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET,Constants.IMAGENET_CLASSES);
           intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_IMAGENET);
-
+          intent.putExtra(ImageClassificationActivity.INTENT_NORM_MEAN_RGB, new float[]{0.485f, 0.456f, 0.406f});
+          intent.putExtra(ImageClassificationActivity.INTENT_NORM_STD_RGB, new float[]{0.229f, 0.224f, 0.225f});
       }
       startActivity(intent);
     });

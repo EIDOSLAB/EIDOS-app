@@ -39,6 +39,8 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
   public static final String INTENT_INPUT_TENSOR_WIDTH = "INPUT_TENSOR_WIDTH";
   public static final String INTENT_INPUT_TENSOR_HEIGHT = "INPUT_TENSOR_HEIGHT ";
   public static final String INTENT_INPUT_DATASET = "INTENT_INPUT_DATASET";
+  public static final String INTENT_NORM_MEAN_RGB = "INTENT_NORM_MEAN_RGB";
+  public static final String INTENT_NORM_STD_RGB = "INTENT_NORM_STD_RGB";
 
 
   private static final int TOP_K = 3;
@@ -79,6 +81,8 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
   private String[] dataset;
   private int inputTensorWidth;
   private int inputTensorHeight;
+  private float[] meanRGB;
+  private float[] stdRGB;
 
 
   @Override
@@ -194,6 +198,26 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
     return dataset;
   }
 
+  protected float[] getIntentMEANDataset() {
+    if (meanRGB!=null) {
+      return meanRGB;
+    }
+    final float[] intentMEAN = getIntent().getFloatArrayExtra(INTENT_NORM_MEAN_RGB);
+    meanRGB = intentMEAN;
+
+    return meanRGB;
+  }
+
+  protected float[] getIntentSTDDataset() {
+    if (stdRGB!=null) {
+      return stdRGB;
+    }
+    final float[] intentSTD = getIntent().getFloatArrayExtra(INTENT_NORM_STD_RGB);
+    stdRGB = intentSTD;
+
+    return stdRGB;
+  }
+
 
   @Override
   protected String getInfoViewAdditionalText() {
@@ -225,8 +249,9 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
       TensorImageUtils.imageYUV420CenterCropToFloatBuffer(
           image.getImage(), rotationDegrees,
               inputTensorWidth, inputTensorHeight,
-          TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
-          TensorImageUtils.TORCHVISION_NORM_STD_RGB,
+              getIntentMEANDataset(),
+          //TensorImageUtils.TORCHVISION_NORM_STD_RGB,
+              getIntentSTDDataset(),
           mInputTensorBuffer, 0);
 
       final long moduleForwardStartTime = SystemClock.elapsedRealtimeNanos();

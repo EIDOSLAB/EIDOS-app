@@ -5,6 +5,6 @@ local.properties
 .idea/
 .externalNativeBuild
 build
-NNInference/app/build
-NNInference/app/release
+release
+*.csv
 

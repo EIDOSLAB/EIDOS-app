@@ -85,23 +85,28 @@ public class VisionListActivity extends AbstractListActivity {
       intent.putExtra(ImageClassificationActivity.INTENT_MODULE_ASSET_NAME, (String) spinner.getSelectedItem());
       String nModuleAssetName = (String) spinner.getSelectedItem();
       String modelSelected = nModuleAssetName.substring(nModuleAssetName.indexOf('_')+1,nModuleAssetName.indexOf('.')); //MODEL PATHNAME = [DATASET]_[ARCHITECTURE]_[TECHNIQUE].pt
-      switch(modelSelected.substring(0,modelSelected.indexOf('_')))
-      {
-        case "resnet32":
-        case "vgg162l":
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH,32);
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT,32);
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET,Constants.CIFAR10_CLASSES);
+      //switch(modelSelected.substring(0,modelSelected.indexOf('_')))
+      //{
+      if(modelSelected.indexOf("cifar10") != -1) {
+        //case "resnet32":
+        //case "vgg162l":
+          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH, 32);
+          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT, 32);
+          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET, Constants.CIFAR10_CLASSES);
           intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR10);
-          break;
-        case "alexnet":
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH,32);
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT,32);
-          intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET,Constants.CIFAR100_CLASSES);
-          intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR100);
+          //break;
+      }
+      else if(modelSelected.indexOf("cifar100") != -1) {
+        //case "alexnet":
+        intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH, 32);
+        intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT, 32);
+        intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET, Constants.CIFAR100_CLASSES);
+        intent.putExtra(ImageClassificationActivity.INTENT_INFO_VIEW_TYPE, InfoViewFactory.INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR100);
 
-          break;
-        default:
+        //break;
+      }
+      else {
+        //default:
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_WIDTH,224);
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_TENSOR_HEIGHT,224);
           intent.putExtra(ImageClassificationActivity.INTENT_INPUT_DATASET,Constants.IMAGENET_CLASSES);

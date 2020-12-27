@@ -46,13 +46,6 @@ public class ModelsCollector {
 
         File[] files = new File(getPathToModels(context)).listFiles();
 
-        //MODELS LIST
-        //List<String> modelsName = new ArrayList<String>();
-        //modelsName.add("alexnet");
-        //modelsName.add("resnet32");
-        //modelsName.add("vgg162l");
-        //modelsName.add("resnet101");
-        //modelsName.add("resnet18");
         //DATASET LIST
         List<String> datasetsName = new ArrayList<String>();
         datasetsName.add("cifar10");
@@ -115,27 +108,6 @@ public class ModelsCollector {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //BufferedReader reader = null;
-        //try {
-            //reader = new BufferedReader(new InputStreamReader(getAssets().open("path_to_models.txt")));
-        //    String this_file = Utils.assetFilePath(context, "path_to_models.txt");
-        //    reader = new BufferedReader(new FileReader(this_file));
-        //} catch (FileNotFoundException e) {
-        //    e.printStackTrace();
-        //}
-        //String line = "";
-        //String result = "";
-        //try {
-        //    line = reader.readLine();
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
-        //try {
-        //    reader.close();
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
         return text;
     }
 
@@ -146,25 +118,6 @@ public class ModelsCollector {
         if (!file.exists()) {
             writeStringToFile(context, DOWNLOAD_DEFAULT);
         }
-        //if (new String("/").equals(line)){
-        //    FileWriter fw = null;
-        //   try {
-        //      fw = new FileWriter(Utils.assetFilePath(context,"path_to_models.txt"));
-        //  } catch (IOException e) {
-        //      e.printStackTrace();
-        //  }
-        //  line = DOWNLOAD_DEFAULT;
-        //v  try {
-        //      fw.write(line);
-        //  } catch (IOException e) {
-        //      e.printStackTrace();
-        //  }
-        //  try {
-        //      fw.close();
-        //  } catch (IOException e) {
-        //      e.printStackTrace();
-        //  }
-        //}
         String result = readStringFromFile(context);
         return result;
 

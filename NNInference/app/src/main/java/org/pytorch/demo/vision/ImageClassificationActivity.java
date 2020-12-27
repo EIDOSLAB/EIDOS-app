@@ -16,7 +16,7 @@ import org.pytorch.Tensor;
 import org.pytorch.demo.Constants;
 import org.pytorch.demo.R;
 import org.pytorch.demo.Utils;
-import org.pytorch.demo.log.StatsCollector;
+import org.pytorch.demo.log.ModelsCollector;
 import org.pytorch.demo.vision.view.ResultRowView;
 import org.pytorch.torchvision.TensorImageUtils;
 
@@ -211,7 +211,7 @@ public class ImageClassificationActivity extends AbstractCameraXActivity<ImageCl
     try {
       if (mModule == null) {
 
-        mModule = Module.load(StatsCollector.getPathToModels(this) + "/" + getModuleAssetName());
+        mModule = Module.load(ModelsCollector.getPathToModels(this) + "/" + getModuleAssetName());
         dataset = getIntentInputDataset();
         inputTensorWidth = getInputTensorWidth();
         inputTensorHeight = getInputTensorHeight();

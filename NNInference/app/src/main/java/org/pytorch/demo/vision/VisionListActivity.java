@@ -21,7 +21,7 @@ import org.pytorch.demo.Constants;
 import org.pytorch.demo.InfoViewFactory;
 import org.pytorch.demo.R;
 import org.pytorch.demo.Utils;
-import org.pytorch.demo.log.StatsCollector;
+import org.pytorch.demo.log.ModelsCollector;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,10 +40,10 @@ public class VisionListActivity extends AbstractListActivity {
     super.onCreate(savedInstanceState);
 
     TextView tv1 = (TextView)findViewById(R.id.path_to_models);
-    tv1.setText("Models path : " + StatsCollector.getPathToModels(this));
+    tv1.setText("Models path : " + ModelsCollector.getPathToModels(this));
 
     Spinner spinner = findViewById(R.id.spinner);
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, StatsCollector.getModels(this));
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ModelsCollector.getModels(this));
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
     Context c = this;
@@ -52,8 +52,8 @@ public class VisionListActivity extends AbstractListActivity {
       @Override
       public void onClick(View v) {
         adapter.clear();
-        adapter.addAll(StatsCollector.getModels(c));
-        tv1.setText("Models path : " + StatsCollector.getPathToModels(c));
+        adapter.addAll(ModelsCollector.getModels(c));
+        tv1.setText("Models path : " + ModelsCollector.getPathToModels(c));
       }
     });
 

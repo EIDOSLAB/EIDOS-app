@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.io.*;
 
 
 public class StatsCollector {
@@ -33,6 +34,7 @@ public class StatsCollector {
 
     private static final String FORMAT_FPS = "%.2f";
     private static final String FORMAT_US = "%.2f";
+
     private static final String PATH_TO_STATS = Environment.getExternalStoragePublicDirectory("Download") + "/stats.csv";
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -126,59 +128,4 @@ public class StatsCollector {
             }
         }
     }
-
-    public static List<String> getModels(Context context){
-        List<String> results = new ArrayList<String>();
-
-        File[] files = new File(getPathToModels(context)).listFiles();
-
-        //MODELS LIST
-        List<String> modelsName = new ArrayList<String>();
-        modelsName.add("alexnet");
-        modelsName.add("resnet32");
-        modelsName.add("vgg162l");
-        modelsName.add("resnet101");
-        modelsName.add("resnet18");
-
-        for (File file : files) {
-            if (file.isFile() && (file.getName().substring((file.getName().length())-3)).equals(".pt")) {
-                String modelSelected = file.getName().substring(file.getName().indexOf('_')+1,file.getName().indexOf('.'));
-                if(modelsName.contains(modelSelected.substring(0,modelSelected.indexOf('_'))))
-                    results.add(file.getName());
-            }
-        }
-        java.util.Collections.sort(results);
-        results.add("Download models..");
-        results.add(0,"Choose a model");
-        return results;
-    }
-
-    public static String getPathToModels(Context context){
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(Utils.assetFilePath(context,"path_to_models.txt")));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String line = "";
-        String result = "";
-        while(true)
-        {
-            try {
-                if (!(( line = reader.readLine() ) != null)) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            result += line;
-        }
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-
-    }
-
-
 }

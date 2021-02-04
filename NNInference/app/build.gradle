@@ -10,6 +10,11 @@ repositories {
 
 android {
 
+    signingConfigs {
+        eidos {
+            storeFile file('/home/tarta/eidos-keystore.jks')
+        }
+    }
     lintOptions{
         checkReleaseBuilds false
     }
@@ -23,7 +28,7 @@ android {
         minSdkVersion 29
         targetSdkVersion 29
         versionCode 1
-        versionName "1.1"
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

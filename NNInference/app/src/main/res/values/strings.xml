@@ -17,7 +17,7 @@
     Custom version : Load models and collect stats</string>
 
     <string name="welcome_page_image_classification_title">About</string>
-    <string name="welcome_page_image_classification_description">G.Marco Nuzzarello and\n Enzo Tartaglione \nEIDOSlab @Unito\nVersion 1.1</string>
+    <string name="welcome_page_image_classification_description">G.Marco Nuzzarello\n Enzo Tartaglione and \n Andrea Bragagnolo\nEIDOSlab @Unito\nVersion 1.2</string>
 
     <string name="clear">Clear</string>
     <string name="text_classification_topic">Topic</string>

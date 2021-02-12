@@ -1006,6 +1006,16 @@ public class Constants {
       "toilet tissue, toilet paper, bathroom tissue"
   };
 
+  public static String[] ISIC_CLASSES = new String[]{
+          "normal",
+          "melanoma",
+          "melanocytic nevus",
+          "basal cell carcinoma",
+          "actinic keratosis",
+          "benign keratosis",
+          "dematofibroma",
+          "vascular lesion",
+  };
 
   public static String[] CIFAR10_CLASSES = new String[]{
           "airplane",

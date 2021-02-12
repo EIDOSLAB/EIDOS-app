@@ -48,9 +48,10 @@ public class ModelsCollector {
 
         //DATASET LIST
         List<String> datasetsName = new ArrayList<String>();
-        datasetsName.add("cifar10");
         datasetsName.add("cifar100");
+        datasetsName.add("cifar10");
         datasetsName.add("imagenet");
+        datasetsName.add("isic");
 
         for (File file : files) {
             if (file.isFile() && (file.getName().substring((file.getName().length())-3)).equals(".pt")) {

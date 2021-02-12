@@ -12,6 +12,7 @@ public class InfoViewFactory {
   public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR10 = 1;
   public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_CIFAR100 = 2;
   public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_IMAGENET = 3;
+  public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_ISIC = 4;
 
 
   public static View newInfoView(Context context, int infoViewType, @Nullable String additionalText) {
@@ -51,6 +52,16 @@ public class InfoViewFactory {
         descriptionTextView.setText(sb.toString());
         return view;
       }
+    else if (INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_ISIC == infoViewType) {
+
+      TextView descriptionTextView = view.findViewById(R.id.info_description);
+      StringBuilder sb = new StringBuilder(context.getString(R.string.vision_card_isic_description));
+      if (additionalText != null) {
+        sb.append('\n').append("Model : ").append(additionalText);
+      }
+      descriptionTextView.setText(sb.toString());
+      return view;
+    }
     throw new IllegalArgumentException("Unknown info view type");
   }
 

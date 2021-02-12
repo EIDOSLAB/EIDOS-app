@@ -17,7 +17,7 @@
     Custom version : Load models and collect stats</string>
 
     <string name="welcome_page_image_classification_title">About</string>
-    <string name="welcome_page_image_classification_description">G.Marco Nuzzarello\n Enzo Tartaglione and \n Andrea Bragagnolo\nEIDOSlab @Unito\nVersion 1.2</string>
+    <string name="welcome_page_image_classification_description">G.Marco Nuzzarello\n Enzo Tartaglione and \n Andrea Bragagnolo\nEIDOSlab @Unito\nVersion 1.4</string>
 
     <string name="clear">Clear</string>
     <string name="text_classification_topic">Topic</string>
@@ -36,7 +36,7 @@
     <string name="vision_card_cifar10_description">Input 32x32\n Output on 10 classes</string>
     <string name="vision_card_cifar100_description">Input 32x32\n Output on 100 classes</string>
     <string name="vision_card_imagenet_description">Input 224x224\n Output on 1000 classes</string>
-
+    <string name="vision_card_isic_description">Input 224x224\n Output on 8 classes</string>
 
 
 
